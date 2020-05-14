@@ -27,8 +27,14 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    meta: { title: '登陆' },
+    meta: { title: '登录' },
     component: () => import('../views/Login.vue'),
+  },
+  {
+    path: '/regis',
+    name: 'Registered',
+    meta: { title: '注册' },
+    component: () => import('../views/Registered.vue'),
   },
 ]
 

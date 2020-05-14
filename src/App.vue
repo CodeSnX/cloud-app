@@ -21,10 +21,10 @@ export default {
 </script>
 
 <style>
-.bottom {
+/* .bottom {
   width: 100%;
   height: 60px;
   position: fixed;
   bottom: 0;
-}
+} */
 </style>

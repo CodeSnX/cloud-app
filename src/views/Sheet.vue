@@ -1,27 +1,6 @@
 <template>
   <div id="sheet">
     <div class="title">全部歌单</div>
-    <!-- <div class="wrap">
-      <div
-        class="list"
-        v-for="(item,index) in sheetarray"
-        :key="index"
-      >
-        <div class="img">
-          <div class="count">
-            <van-icon name="service-o" />
-            :
-            {{item.playCount}}
-          </div>
-          <router-link :to="'/sheet/'+item.id">
-            <img
-              :src="item.coverImgUrl"
-              alt
-            />
-          </router-link>
-          <div class="describe">{{item.name}}</div>
-        </div>
-      </div> -->
     <van-image
       round
       width="5rem"
@@ -29,7 +8,6 @@
       src="https://img.yzcdn.cn/vant/cat.jpeg"
       @click="logout"
     />
-    <!-- </div> -->
   </div>
 </template>
 
@@ -37,24 +15,20 @@
 export default {
   name: "sheet",
   data() {
-    return {
-      // sheetarray: []
-    };
+    return {};
   },
   methods: {
-    // getsheet() {
-    //   this.axios.get("/top/playlist").then(res => {
-    //     // console.log(res.data);
-    //     this.sheetarray = res.data.playlists;
-    //   });
-    // },
     logout() {
       alert("退出登录");
-      localStorage.removeItem("token");
-      this.$router.push("/login");
+      this.axios({
+        methods: "get",
+        url: "/logout"
+      }).then(res => {
+        console.log(res);
+        localStorage.removeItem("token");
+        this.$router.push("/login");
+      });
     }
-    // mounted() {
-    //   this.getsheet();
   }
 };
 </script>

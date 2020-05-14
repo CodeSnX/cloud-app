@@ -6,7 +6,7 @@ import store from './store'
 // axios
 import axios from 'axios'
 Vue.prototype.axios = axios
-axios.defaults.baseURL = 'http://localhost:3420'
+axios.defaults.baseURL = 'http://localhost:3000'
 
 // 引入Vant
 import Vant from 'vant'
@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
     isLogin = true
   }
   if (!isLogin) {
-    if (to.path !== '/login') {
+    if (to.path !== '/login' && to.path !== '/regis') {
       return next({ path: '/login' })
     } else {
       next()
