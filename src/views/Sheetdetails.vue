@@ -87,13 +87,14 @@ export default {
       details: [],
       song: [],
       audio: [],
-      key: 0
+      key: 0,
+      id: "24381616"
     };
   },
   methods: {
     // 歌单详情
-    getdetails(id) {
-      this.axios.get("/playlist/detail?id=" + id).then(res => {
+    getdetails() {
+      this.axios.get("/recommend/resource").then(res => {
         //   console.log(res);
         this.details = res.data.playlist;
         this.song = res.data.playlist.tracks;
@@ -101,14 +102,14 @@ export default {
       });
     },
     // 音乐url
-    getsongurl(id) {
-      this.axios.get("/song/url?id=" + id).then(res => {
+    getsongurl() {
+      this.axios.get("/recommend/songs").then(res => {
         console.log(res);
         this.audio = res.data.data[0];
       });
     },
-    playaudio(id) {
-      this.getsongurl(id);
+    playaudio() {
+      this.getsongurl(this.id);
       let audio = document.getElementsByClassName("audio")[0];
       this.key++;
       // 播放

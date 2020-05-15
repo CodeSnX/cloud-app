@@ -1,40 +1,51 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Layout from '../views/index/Layout.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/header',
-    name: 'Header',
-    component: () => import('../components/Header.vue'),
-  },
-  {
-    path: '/footer',
-    name: 'Footer',
-    component: () => import('../components/Footer.vue'),
-  },
-  {
-    path: '/sheet',
-    name: 'Sheet',
-    component: () => import('../views/Sheet.vue'),
-  },
-  {
-    path: '/sheet/:id',
-    name: 'Sheetdetails',
-    component: () => import('../views/Sheetdetails.vue'),
-  },
-  {
     path: '/login',
     name: 'Login',
     meta: { title: '登录' },
-    component: () => import('../views/Login.vue'),
+    component: () => import('../views/login/Login.vue'),
   },
   {
     path: '/regis',
     name: 'Registered',
     meta: { title: '注册' },
-    component: () => import('../views/Registered.vue'),
+    component: () => import('../views/login/Registered.vue'),
+  },
+  {
+    path: '/',
+    name: 'Layout',
+    meta: { title: '主页' },
+    component: Layout,
+    redirect: 'sheet',
+    children: [
+      {
+        path: '/sheet',
+        name: 'Sheet',
+        component: () => import('../components/layout/Sheet.vue'),
+      },
+      {
+        path: '/sheet/:id',
+        name: 'Sheetdetails',
+        component: () => import('../views/Sheetdetails.vue'),
+      },
+      {
+        path: '/my',
+        name: 'My',
+        component: () => import('../components/layout/My.vue'),
+      },
+    ],
+  },
+  {
+    path: '/recom',
+    name: 'Recommend',
+    meta: { title: '每日推荐' },
+    component: () => import('../components/bar/Recommend.vue'),
   },
 ]
 

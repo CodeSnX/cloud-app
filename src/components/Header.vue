@@ -6,11 +6,12 @@
       </div>
       <div class="wrap">
         <van-row>
-          <van-col span="8">新曲</van-col>
+          <van-col span="6">我的</van-col>
           <router-link to="/sheet">
-            <van-col span="8">歌单</van-col>
+            <van-col span="6">发现</van-col>
           </router-link>
-          <van-col span="8">排行榜</van-col>
+          <van-col span="6">云村</van-col>
+          <van-col span="6">视频</van-col>
         </van-row>
       </div>
     </div>
@@ -29,7 +30,8 @@ export default {
 };
 </script>
 <style scoped>
-.flex {
+#appheader {
+  margin-top: 0.5rem;
   display: flex;
   justify-content: space-around;
 }
@@ -37,10 +39,11 @@ export default {
   flex: 2;
 }
 .wrap {
-  flex: 8;
 }
 .icon i {
-  font-size: 2rem;
+  margin-top: 2rem;
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 </style>

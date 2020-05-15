@@ -60,10 +60,11 @@ export default {
       }).then(result => {
         console.log(result.data);
         if (result.data.code == 200) {
+          let data = result.data;
           localStorage.setItem("token", result.data.token);
-          // this.$store.commit("setToken", result.data.token);
+          localStorage.setItem("account", JSON.stringify(data.account));
           this.$notify({ type: "success", message: "登录成功" });
-          this.$router.push("/sheet");
+          this.$router.push("/");
         } else if (result.data.code == 502) {
           this.$notify({ type: "warning", message: "密码错误" });
         } else {
