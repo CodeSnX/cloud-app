@@ -47,6 +47,12 @@ const routes = [
     meta: { title: '每日推荐' },
     component: () => import('../components/bar/Recommend.vue'),
   },
+  {
+    path: '/lead',
+    name: 'Leaderboard',
+    meta: { title: '排行榜' },
+    component: () => import('../components/layout/Leaderboard.vue'),
+  },
 ]
 
 const router = new VueRouter({

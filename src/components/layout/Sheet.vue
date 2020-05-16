@@ -1,34 +1,74 @@
 <template>
   <div id="sheet">
     <van-swipe
-      class="my-swipe"
       :autoplay="3000"
-      indicator-color="white"
+      class="swide"
     >
-      <van-swipe-item>1</van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
+      <van-swipe-item
+        v-for="(image, index) in images"
+        :key="index"
+      >
+        <img :src="image.pic" />
+      </van-swipe-item>
     </van-swipe>
 
     <div class="recom">
-      <router-link to="/sheet/:id">
-        <van-button
-          icon="calender-o"
-          type="info"
-          round
-          color="red"
-        />
-        <p>每日推荐</p>
-      </router-link>
+      <span>
+        <router-link to="/sheet/:id">
+          <van-button
+            icon="calender-o"
+            type="info"
+            round
+            color="red"
+          />
+          <p>每日推荐</p>
+        </router-link>
+      </span>
+      <span>
+        <router-link to="/">
+          <van-button
+            icon="calender-o"
+            type="info"
+            round
+            color="red"
+          />
+          <p>歌单</p>
+        </router-link>
+      </span>
+      <span>
+        <router-link to="/lead">
+          <van-button
+            icon="calender-o"
+            type="info"
+            round
+            color="red"
+          />
+          <p>排行榜</p>
+        </router-link>
+      </span>
+      <span>
+        <router-link to="/">
+          <van-button
+            icon="calender-o"
+            type="info"
+            round
+            color="red"
+          />
+          <p>电台</p>
+        </router-link>
+      </span>
+      <span>
+        <router-link to="/">
+          <van-button
+            icon="calender-o"
+            type="info"
+            round
+            color="red"
+          />
+          <p>直播</p>
+        </router-link>
+      </span>
     </div>
-    <van-image
-      round
-      width="5rem"
-      height="5rem"
-      src="https://img.yzcdn.cn/vant/cat.jpeg"
-      @click="logout"
-    />
   </div>
 </template>
 
@@ -37,42 +77,46 @@ export default {
   name: "sheet",
   data() {
     return {
-      images: [
-        "https://img.yzcdn.cn/vant/apple-1.jpg",
-        "https://img.yzcdn.cn/vant/apple-2.jpg"
-      ]
+      images: []
     };
   },
+  created() {
+    this.getImg();
+  },
   methods: {
-    logout() {
-      alert("退出登录");
+    getImg() {
       this.axios({
         methods: "get",
-        url: "/logout"
+        url: "/banner?type=2"
       }).then(res => {
         console.log(res);
-        localStorage.removeItem("token");
-        this.$router.push("/login");
+        this.images = res.data.banners;
       });
     }
   },
   components: {}
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 #sheet {
   margin-top: 1rem;
 }
-.my-swipe .van-swipe-item {
-  color: #fff;
-  font-size: 20px;
-  line-height: 150px;
-  text-align: center;
-  background-color: #39a9ed;
+.swide {
+  width: 100%;
+  height: 200px;
 }
-.recom p {
-  margin-left: 0.3rem;
+.recom {
+  width: 100%;
+  margin-top: 0.8rem;
   font-size: 0.5rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.recom span {
+  margin-left: 1rem;
+  width: 15%;
+  display: inline-block;
+}
+.recom p {
+  margin-left: 1rem;
 }
 </style>
